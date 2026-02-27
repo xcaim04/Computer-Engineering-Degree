@@ -1,0 +1,131 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+\begin{document}
+	
+	\textbf{Solución a la CP02}
+	
+	\textit{autor: Carlos Javier Blanco Moreira}
+	
+	\section{Analice las raices:}
+	
+	\subsection{Solución (Aplicando regla de Descartes)}
+	
+	\[
+	P(x) = -2x^4 + 2x + 1
+	\]
+	
+	Sabemos que tiene que tener 4 raíces por el \textit{teorema fundamental del algebra}
+	
+	\textbf{Para valores positivos}
+	
+	$a = -2x^4$
+	
+	$b = 2x$
+	
+	$c = 1$
+	
+	$=>$ m = 1
+	
+	\textbf{Para valores negativos}
+	
+	$P(-x) = 2x^4 - 2x - 1$
+	
+	$a = 2x^4$
+	
+	$b = -2x$
+	
+	$c = -1$
+	
+	$=>$ m = 2
+	
+	\textbf{Existen 3 raices reales y el resto complejas.}
+	
+	\[
+	P(x) = 3x^5 - 2x^3 - 3x^2 + x
+	\]	
+
+	\(P(x) = x(3x^4 - 2x^2 - 3x + 1)\)
+	
+	\(x = 0\) \textbf{Primera raiz}
+	
+	\textbf{m = 2}  \textit{(cambios de signo para valores positivos)}
+	
+	\textbf{m = 2}  \textit{(cambios de signo para valores negativos $P(-x)$)}
+	
+	En total hay 5 raices, 3 positivas y 2 negativas, siendo una \textbf{x = 0}
+	
+	\[
+	P(x) = |x^3 - x^2| - 1
+	\]
+	
+	\begin{itemize}
+		\item \textbf{Caso 1:} Si \( x^3 - x^2 \geq 0 \Rightarrow P(x) = x^3 - x^2 - 1 \).
+		\item \textbf{Caso 2:} Si \( x^3 - x^2 < 0 \Rightarrow P(x) = -(x^3 - x^2) - 1 = -x^3 + x^2 - 1 \).
+	\end{itemize}
+	
+	
+	\[
+	x^3 - x^2 - 1 = 0 \quad \text{(raíces reales posibles)}.
+	\]
+	\[
+	-x^3 + x^2 - 1 = 0 \quad \text{(raíces reales posibles)}.
+	\]
+	
+	En total, las raíces se distribuyen según el signo de \( x^3 - x^2 \).
+	
+	\section{Calcula con 5 cifras significativas correctas}
+	
+	\[
+	x = \sqrt[3]{3}
+	\]
+	
+	\[
+	x^3 - 3 = 0
+	\]
+	
+	\[
+	x_{n+1} = x_n - \frac{x_n^3 - 3}{3x_n^2} = \frac{2x_n^3 + 3}{3x_n^2}
+	\]
+	
+	
+	Tomamos \(x_0 = 1.5\):
+	
+	\begin{align*}
+		x_1 &= \frac{2(1.5)^3 + 3}{3(1.5)^2} = \frac{9.75}{6.75} = 1.444444 \\
+		x_2 &= \frac{2(1.444444)^3 + 3}{3(1.444444)^2} \approx 1.442249 \\
+		x_3 &= \frac{2(1.442249)^3 + 3}{3(1.442249)^2} \approx 1.442249
+	\end{align*}
+	
+	\[
+	\boxed{\sqrt[3]{3} \approx 1.4422 \text{ (5 cifras significativas)}}
+	\]
+	
+	\section*{Extremos relativos de \(f(x) = (x - 2)^5 + \frac{3}{2}x^2 - 10x\)}
+	
+	\[
+	f'(x) = 5(x - 2)^4 + 3x - 10
+	\]
+	
+	\[
+	x_{n+1} = x_n - \frac{5(x_n - 2)^4 + 3x_n - 10}{20(x_n - 2)^3 + 3}
+	\]
+	
+	Con \(x_0 = 2.8\):
+	
+	\begin{align*}
+		x_1 &= 2.8 - \frac{0.448}{13.24} \approx 2.7662 \\
+		x_2 &= 2.7662 - \frac{0.0221}{11.992} \approx 2.76436
+	\end{align*}
+	
+	\[
+	f''(2.764) = 20(0.764)^3 + 3 \approx 11.92 > 0 \quad \Rightarrow \text{Mínimo relativo}
+	\]
+	
+	\[
+	f(2.764) = (0.764)^5 + \frac{3}{2}(2.764)^2 - 10(2.764) \approx -15.920
+	\]
+	
+	\boxed{\text{Único extremo relativo: mínimo en } x \approx 2.764,\ f(x) \approx -15.920}
+	
+\end{document}
