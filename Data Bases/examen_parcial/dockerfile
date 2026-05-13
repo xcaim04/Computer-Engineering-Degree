@@ -1,0 +1,5 @@
+FROM postgres:latest 
+
+COPY ./scripts/*.sql /docker-entrypoint-initdb.d/
+
+RUN echo "Custom setup done"
