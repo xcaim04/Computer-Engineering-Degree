@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contacto | Estación Cabo Corrientes</title>
+<meta name="description" content="Escribe a la Estación Cabo Corrientes para colaboraciones, visitas o consultas de datos.">
+<meta name="author" content="Estación Biológica Cabo Corrientes">
+<meta name="keywords" content="biología marina, arrecifes, Cuba, investigación">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Contacto | Estación Cabo Corrientes">
+<meta property="og:description" content="Escribe a la Estación Cabo Corrientes para colaboraciones, visitas o consultas de datos.">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="estilos.css">
+<script src="script.js" defer></script>
+</head>
+<body>
+<header>
+<a class="marca" href="index.html">Estación Cabo Corrientes</a>
+<nav aria-label="Principal"><ul>
+<li><a href="index.html">Inicio</a></li>
+<li><a href="nosotros.html">Quiénes somos</a></li>
+<li><a href="investigacion.html">Investigación</a></li>
+<li><a href="contacto.html" aria-current="page">Contacto</a></li>
+<li><a href="login.html">Iniciar sesión</a></li>
+</ul></nav>
+<button id="tema" type="button" aria-label="Cambiar entre tema claro y oscuro">Tema</button>
+</header>
+<main>
+<h1>Contacto</h1>
+<section aria-labelledby="t-form">
+<h2 id="t-form">Escríbenos</h2>
+<form class="form" action="#" method="post">
+<div class="campo"><label for="nombre">Nombre completo</label><input type="text" id="nombre" name="nombre" required minlength="3" autocomplete="name"></div>
+<div class="campo"><label for="correo">Correo electrónico</label><input type="email" id="correo" name="correo" required autocomplete="email"></div>
+<div class="campo"><label for="motivo">Motivo</label><select id="motivo" name="motivo" required><option value="">Elige una opción</option><option>Colaboración científica</option><option>Visita de estudiantes</option><option>Solicitud de datos</option><option>Otro</option></select></div>
+<div class="campo"><label for="mensaje">Mensaje</label><textarea id="mensaje" name="mensaje" rows="5" required minlength="20" maxlength="600"></textarea></div>
+<div class="check"><input type="checkbox" id="acepto" name="acepto" required><label for="acepto">Acepto que usen mis datos para responderme</label></div>
+<button class="btn" type="submit">Enviar mensaje</button>
+</form>
+<address><strong>Estación Biológica Cabo Corrientes</strong><br>Carretera a Cabo Corrientes km 4, Guanahacabibes, Pinar del Río, Cuba</address>
+</section>
+</main>
+<footer>
+<p>&copy; 2026 Estación Biológica Cabo Corrientes. Todos los derechos reservados.</p>
+<ul><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">ResearchGate</a></li></ul>
+</footer>
+</body>
+</html>
