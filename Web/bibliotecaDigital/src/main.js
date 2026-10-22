@@ -53,7 +53,7 @@
 	const activeLoans = () => data.prestamos.filter((loan) => loan.fechaDevolucion === null);
 	const loanForBook = (bookId) => activeLoans().find((loan) => loan.idLibro === bookId);
 	const isOverdue = (loan) => loan.fechaDevolucion === null && loan.fechaLimite < today();
-	const daysLate = (date) => Math.max(0, Math.floor((new Date(`${date}T12:00:00`) - new Date(`${today()}T12:00:00`)) / 86400000));
+	const daysLate = (date) => Math.max(0, Math.floor((new Date(`${today()}T12:00:00`) - new Date(`${date}T12:00:00`)) / 86400000));
 	const escapeHtml = (value = "") => String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
 	const formatDate = (date) => new Intl.DateTimeFormat("es", { day: "2-digit", month: "short", year: "numeric" }).format(new Date(`${date}T12:00:00`));
 	const normalize = (text) => text.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
