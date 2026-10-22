@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Biblioteca digital personal: catálogo, préstamos, devoluciones e historial de lectura.">
+		<meta name="theme-color" content="#f5f3ed">
+		<title>Biblioteca | Archivo de lecturas</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="./style.css">
+		<script src="./main.js" defer></script>
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Saltar al contenido</a>
+		<div class="app-shell">
+			<aside class="sidebar" aria-label="Navegación principal">
+				<a class="brand" href="#catalogo" data-view-link="catalogo" aria-label="Biblioteca, ir al catálogo">
+					<span class="brand-symbol" aria-hidden="true"><span></span><span></span><span></span></span>
+					<span class="brand-name">Biblioteca<span>archivo personal</span></span>
+				</a>
+				<div class="sidebar-rule"></div>
+				<p class="nav-label">Tu espacio</p>
+				<nav class="main-nav">
+					<a class="nav-link active" href="#catalogo" data-view-link="catalogo" aria-current="page"><span class="nav-icon" aria-hidden="true">▤</span><span>Catálogo</span><span class="nav-arrow" aria-hidden="true">↗</span></a>
+					<a class="nav-link" href="#prestamos" data-view-link="prestamos"><span class="nav-icon" aria-hidden="true">↗</span><span>Mis préstamos</span><span class="nav-count" id="loan-count" hidden>0</span></a>
+					<a class="nav-link" href="#libro" data-view-link="libro"><span class="nav-icon nav-plus" aria-hidden="true">＋</span><span>Agregar un libro</span></a>
+					<a class="nav-link" href="#resumen" data-view-link="resumen"><span class="nav-icon" aria-hidden="true">◷</span><span>Resumen y ajustes</span></a>
+				</nav>
+				<div class="sidebar-bottom">
+					<div class="sidebar-note"><span class="note-mark" aria-hidden="true">✳</span><p>Las historias también viven entre páginas.</p></div>
+					<div class="profile-line"><span class="profile-avatar" aria-hidden="true">B</span><span id="user-greeting">Biblioteca personal</span><span class="online-dot" aria-label="Biblioteca lista"></span></div>
+				</div>
+			</aside>
+
+			<main id="main-content" class="main-content">
+				<header class="topbar">
+					<div class="breadcrumb"><span>MI BIBLIOTECA</span><span aria-hidden="true">/</span><span id="page-title">El catálogo</span></div>
+					<button id="theme-toggle" class="theme-toggle" type="button" aria-label="Cambiar a tema oscuro" title="Cambiar tema"><span aria-hidden="true">◐</span></button>
+				</header>
+
+				<div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+
+				<section id="view-catalogo" class="view catalog-view" aria-labelledby="catalog-heading">
+					<div class="page-intro catalog-intro">
+						<div><p class="eyebrow page-kicker">EL PLACER DE VOLVER A ENCONTRAR</p><h1 id="catalog-heading">Libros que <em>nos encuentran.</em></h1><p class="page-subtitle">Una pequeña casa para todas tus lecturas.</p></div>
+						<a class="button button-primary add-book-link" href="#libro" data-view-link="libro"><span aria-hidden="true">＋</span> Añadir ejemplar</a>
+					</div>
+
+					<div class="catalog-toolbar" aria-label="Buscar, filtrar y ordenar libros">
+						<label class="search-field"><span class="search-icon" aria-hidden="true">⌕</span><span class="sr-only">Buscar por título o autor</span><input id="search-books" type="search" placeholder="Buscar título o autor…" autocomplete="off"></label>
+						<label class="select-wrap"><span class="sr-only">Filtrar por género</span><select id="genre-filter"><option value="todos">Todos los géneros</option></select><span aria-hidden="true">⌄</span></label>
+						<label class="select-wrap sort-select"><span class="sr-only">Ordenar por</span><select id="sort-books"><option value="titulo">Título</option><option value="autor">Autor</option><option value="anio">Año</option></select><span aria-hidden="true">⌄</span></label>
+						<label class="select-wrap direction-select"><span class="sr-only">Dirección del orden</span><select id="sort-direction"><option value="asc">A–Z / menor</option><option value="desc">Z–A / mayor</option></select><span aria-hidden="true">⌄</span></label>
+					</div>
+					<div class="catalog-subbar"><div class="filter-group" role="group" aria-label="Filtrar disponibilidad"><button type="button" class="filter-button selected" data-filter="todos" aria-pressed="true">Todos</button><button type="button" class="filter-button" data-filter="disponibles" aria-pressed="false">Disponibles</button><button type="button" class="filter-button" data-filter="prestados" aria-pressed="false">Prestados</button></div><p id="catalog-count" class="result-count" aria-live="polite"></p></div>
+					<div id="book-grid" class="book-grid" aria-live="polite"></div>
+				</section>
+
+				<section id="view-prestamos" class="view loans-view" aria-labelledby="loans-heading" hidden>
+					<div class="page-intro"><div><p class="eyebrow page-kicker">EN CIRCULACIÓN</p><h1 id="loans-heading">Una lectura <em>prestada.</em></h1><p class="page-subtitle">Fechas claras, buenos regresos.</p></div></div>
+					<div class="section-heading"><div><p class="eyebrow">AHORA</p><h2>Préstamos activos</h2></div><span class="section-ornament" aria-hidden="true">01</span></div>
+					<div id="active-loans" class="loan-list"></div>
+					<div class="section-heading history-heading"><div><p class="eyebrow">MEMORIA</p><h2>Historial</h2></div><span class="section-ornament" aria-hidden="true">02</span></div>
+					<div id="loan-history" class="history-list"></div>
+				</section>
+
+				<section id="view-libro" class="view form-view" aria-labelledby="form-heading" hidden>
+					<div class="page-intro"><div><p class="eyebrow page-kicker">EL CATÁLOGO CRECE</p><h1 id="form-heading">Un nuevo <em>título.</em></h1><p id="form-intro" class="page-subtitle">Incorpora una nueva lectura a la biblioteca.</p></div></div>
+					<div class="form-layout">
+						<div class="form-aside"><span class="form-index">01 <i>/ 06</i></span><p>Las bibliotecas guardan lo que somos y lo que todavía queremos descubrir.</p><span class="aside-rule"></span><span class="aside-caption">FICHA DE CATÁLOGO</span></div>
+						<form id="book-form" class="book-form" novalidate>
+							<div class="field-row">
+								<div class="form-field field-wide"><label for="book-title">Título <span>*</span></label><input class="text-input" id="book-title" name="titulo" type="text" minlength="3" maxlength="60" required placeholder="El nombre del libro" aria-describedby="error-titulo"><p id="error-titulo" class="field-error" data-error-for="titulo" role="alert"></p></div>
+								<div class="form-field"><label for="book-year">Año <span>*</span></label><input class="text-input" id="book-year" name="anio" type="number" min="1000" max="2026" step="1" required placeholder="2024" aria-describedby="error-anio"><p id="error-anio" class="field-error" data-error-for="anio" role="alert"></p></div>
+							</div>
+							<div class="field-row">
+								<div class="form-field field-wide"><label for="book-author">Autor <span>*</span></label><input class="text-input" id="book-author" name="autor" type="text" required placeholder="Nombre y apellido" aria-describedby="error-autor"><p id="error-autor" class="field-error" data-error-for="autor" role="alert"></p></div>
+								<div class="form-field"><label for="book-genre">Género <span>*</span></label><span class="form-select"><select id="book-genre" name="genero" required><option>Novela</option><option>Ciencia</option><option>Historia</option><option>Poesía</option><option>Fantasía</option><option>Ensayo</option><option>Biografía</option><option>Arte</option></select><span aria-hidden="true">⌄</span></span><p class="field-error" aria-hidden="true"></p></div>
+							</div>
+							<div class="form-field"><label for="book-comment">Una nota <span class="optional-label">OPCIONAL</span></label><textarea class="text-input" id="book-comment" name="comentario" maxlength="120" rows="3" placeholder="Una edición especial, una dedicatoria…" aria-describedby="comment-count"></textarea><div class="textarea-meta"><p class="field-error" data-error-for="comentario" role="alert"></p><span><span id="comment-count">120</span> caracteres</span></div></div>
+							<div class="collection-field"><label class="check-control" for="book-collection"><input id="book-collection" name="coleccion" type="checkbox"><span class="custom-check" aria-hidden="true"></span><span>Ejemplar de colección</span></label><p>Se conserva en sala y no está disponible para préstamo.</p><p class="field-error" data-error-for="coleccion" role="alert"></p></div>
+							<div class="form-actions"><button id="book-submit" class="button button-primary" type="submit">Agregar libro <span aria-hidden="true">→</span></button><button id="cancel-edit" class="button button-text" type="button" hidden>Cancelar</button></div>
+						</form>
+					</div>
+				</section>
+
+				<section id="view-resumen" class="view summary-view" aria-labelledby="summary-heading" hidden>
+					<div class="page-intro"><div><p class="eyebrow page-kicker">UNA MIRADA AL CONJUNTO</p><h1 id="summary-heading">El pulso de <em>la biblioteca.</em></h1><p class="page-subtitle">Cada cifra cuenta una historia.</p></div></div>
+					<div id="summary-stats" class="summary-stats"></div>
+					<div class="summary-lower"><section class="genre-panel" aria-labelledby="genre-heading"><div class="section-heading"><div><p class="eyebrow">COLECCIÓN</p><h2 id="genre-heading">Libros por género</h2></div></div><div id="genre-summary" class="genre-summary"></div></section>
+						<section class="settings-panel" aria-labelledby="settings-heading"><div class="section-heading"><div><p class="eyebrow">PREFERENCIAS</p><h2 id="settings-heading">Tu espacio</h2></div></div><label for="user-name" class="field-label">Tu nombre</label><input id="user-name" class="text-input" type="text" maxlength="40" autocomplete="name" placeholder="¿Cómo te llamas?"><p class="settings-hint">Aparece en el menú y se sugiere al registrar un préstamo.</p><div class="settings-separator"></div><div class="reset-row"><div><strong>Restablecer biblioteca</strong><p>Volver a los libros y préstamos iniciales.</p></div><button id="reset-library" class="button button-outline-danger" type="button">Restablecer</button></div></section></div>
+				</section>
+				<footer class="page-footer"><span>Biblioteca digital</span><span>Una página a la vez <i aria-hidden="true">✳</i></span></footer>
+			</main>
+		</div>
+		<dialog id="app-modal" class="app-modal" aria-labelledby="modal-title"></dialog>
+	</body>
+</html>
